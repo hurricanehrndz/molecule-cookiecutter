@@ -1,20 +1,35 @@
 ---
 dependency:
-  name: gilt
+  name: galaxy
+  options:
+    role-file: requirements.yml
 driver:
   name: docker
 lint:
   name: yamllint
+  options:
+    config-data:
+      ignore: '.direnv/'
 platforms:
-  - name: instance-1
-    image: centos:7
+  - name: "{{ cookiecutter.role_name }}_${MOLECULE_DISTRIBUTION:-ubuntu18}"
+    image: "quay.io/samdoran/${MOLECULE_DISTRIBUTION:-ubuntu18}-ansible:latest"
+    command: ${MOLECULE_COMMAND:-""}
+    volumes:
+      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    privileged: true
+    pre_build_image: false
 provisioner:
   name: ansible
+  options:
+    vvv: true
   lint:
     name: ansible-lint
 scenario:
   name: {{ cookiecutter.scenario_name }}
 verifier:
   name: testinfra
+  options:
+    verbose: true
   lint:
     name: flake8
+

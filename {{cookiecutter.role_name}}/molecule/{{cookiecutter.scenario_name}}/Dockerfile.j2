@@ -4,7 +4,7 @@ FROM {{ item.image }}
 
 RUN rm -f /lib/systemd/system/getty.target \
  && rm -f /lib/systemd/system/systemd*udev* \
- && if [ -x $(command -v dnf) ]; then \
+ && if [ -x "$(command -v dnf)" ]; then \
       echo "fastestmirror=true" >> /etc/dnf/dnf.conf; \
       echo "minrate=10k" >> /etc/dnf/dnf.conf; \
       echo "timeout=10" >> /etc/dnf/dnf.conf; \

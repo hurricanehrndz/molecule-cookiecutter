@@ -15,8 +15,12 @@ ENV {{ var }} {{ value }}
 {% endfor %}
 {% endif %}
 
-RUN rm -f /lib/systemd/system/getty.target \
- && rm -f /lib/systemd/system/systemd*udev* \
+RUN rm -rf /lib/systemd/system/getty* \
+ && rm -rf /etc/systemd/system/getty* \
+ && rm -rf /lib/systemd/system/multi-user.target.wants/getty* \
+ && rm -rf /lib/systemd/system/systemd*udev* \
+ && systemctl mask getty.target || true \
+ && systemctl mask getty.slice || true \
  && if [ -x "$(command -v dnf)" ]; then \
       echo "fastestmirror=true" >> /etc/dnf/dnf.conf; \
       echo "minrate=10k" >> /etc/dnf/dnf.conf; \
@@ -25,7 +29,6 @@ RUN rm -f /lib/systemd/system/getty.target \
       dnf --assumeyes install bash; \
     fi \
  && if [ -x "$(command -v apt-get)" ]; then \
-      apt-get update && apt-get upgrade -y && apt-get install -y python sudo bash; \
+      apt-get update && apt-get upgrade -y && apt-get install -y sudo bash; \
     fi
-
 {%- endraw %}

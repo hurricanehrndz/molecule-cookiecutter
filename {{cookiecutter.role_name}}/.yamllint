@@ -1,3 +1,4 @@
+---
 extends: default
 
 # https://github.com/ansible/ansible/blob/stable-2.9/test/lib/ansible_test/_data/sanity/yamllint/config/default.yml
@@ -31,4 +32,3 @@ rules:
     type: unix
   trailing-spaces: disable
   truthy: disable
-

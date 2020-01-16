@@ -30,7 +30,7 @@ passed in as parameters) is always nice for users too:
 ```yaml
 - hosts: servers
   roles:
-     - { role: {{ cookiecutter.role_name }}, x: 42 }
+     - { role: {{ cookiecutter.role_name }} }
 ```
 
 ## License

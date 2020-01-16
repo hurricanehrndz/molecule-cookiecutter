@@ -2,6 +2,6 @@
 - name: Converge
   hosts: all
   tasks:
-    - name: Run role
+    - name: Run {{ cookiecutter.role_name }} role
       include_role:
         name: {{ cookiecutter.role_name }}

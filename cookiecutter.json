@@ -1,6 +1,7 @@
 {
     "role_name": "role_name",
     "scenario_name": "default",
+    "podman_scenario_name": "podman",
     "author": "your name",
     "description": "your description",
     "company": "your company (optional)",

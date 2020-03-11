@@ -26,7 +26,7 @@ provisioner:
   playbooks:
     converge: ../resources/playbooks/converge.yml
 scenario:
-  name: {{ cookiecutter.scenario_name }}
+  name: {{ cookiecutter.podman_scenario_name }}
 verifier:
   name: testinfra
   directory: ../resources/tests/
